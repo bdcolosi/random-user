@@ -2,27 +2,48 @@ import React, { Component } from "react";
 
 class RandomUser extends Component {
     state = {
-        user: "Fetching a user...."
+        name: "Brooke",
+        gender: "female",
+        email: "b@gmail.com",
+        birthday: "April 27th, 1993",
+        address: "Decatur, GA",
+        phone: "(860) 462-0879",
+        password:"password"
     }
 
     async componentDidMount() {
       try {
         const response = await fetch('https://randomuser.me/api/?results=1')
         const data = await response.json();
+            console.log(data);
         this.setState({ 
-          user: data.value
+          name: data.value,
+          gender: data.value,
+          email: data.value,
+          birthday: data.value,
+          address: data.value,
+          phone: data.value,
+          password: data.password
         })
       } catch (error)
       {
         this.setState({
-          user: error.message
+          name: error.message
         })
       }
     }
   render() {
-      const {user} = this.state
+      const {name, gender, email,birthday,address,phone,password} = this.state
     return (
-        <p>{user}</p> 
+        <p>
+        {name}<br/>
+        {gender}<br/>
+        {email}<br/>
+        {birthday}<br/>
+        {address}<br/>
+        {phone}<br/>
+        {password}<br/>
+        </p> 
     );
   }
 }
