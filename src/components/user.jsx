@@ -2,13 +2,10 @@ import React, { Component } from "react";
 
 class RandomUser extends Component {
     state = {
-        name: "Brooke",
-        gender: "female",
+        info: "fetching data",
+        location: "Atlanta, GA",
         email: "b@gmail.com",
-        birthday: "April 27th, 1993",
-        address: "Decatur, GA",
-        phone: "(860) 462-0879",
-        password:"password"
+        dob: "04/27/1993"
     }
 
     async componentDidMount() {
@@ -17,32 +14,26 @@ class RandomUser extends Component {
         const data = await response.json();
             console.log(data);
         this.setState({ 
-          name: data.value,
-          gender: data.value,
-          email: data.value,
-          birthday: data.value,
-          address: data.value,
-          phone: data.value,
-          password: data.password
+            info: `New User: ${data.results[0].name.first}`,
+            location: data.results[0].location.street.name + ", " + data.results[0].location.city + ", " + data.results[0].location.country,
+            email: data.results[0].email,
+            dob: data.results[0].dob.date + ", " + data.results[0].dob.age
         })
       } catch (error)
       {
         this.setState({
-          name: error.message
+          info: error.message
         })
       }
     }
   render() {
-      const {name, gender, email,birthday,address,phone,password} = this.state
+      const {info, location, email, dob} = this.state
     return (
         <p>
-        {name}<br/>
-        {gender}<br/>
+        {info}<br/>
+        {location}<br/>
         {email}<br/>
-        {birthday}<br/>
-        {address}<br/>
-        {phone}<br/>
-        {password}<br/>
+        {dob}<br/>
         </p> 
     );
   }
