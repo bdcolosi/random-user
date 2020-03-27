@@ -8,6 +8,10 @@ function App() {
      <h1>Random User</h1>
      <div>
      <RandomUser/>
+     <RandomUser/>
+     <RandomUser/>
+     <RandomUser/>
+     <RandomUser/>
        </div> 
     </div>
   );

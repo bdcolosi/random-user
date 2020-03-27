@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 class RandomUser extends Component {
     state = {
+        picture: "FACE",
         info: "fetching data",
         location: "Atlanta, GA",
         email: "b@gmail.com",
@@ -14,6 +15,7 @@ class RandomUser extends Component {
         const data = await response.json();
             console.log(data);
         this.setState({ 
+            picture: data.results[0].picture.large,
             info: `New User: ${data.results[0].name.first}`,
             location: data.results[0].location.street.name + ", " + data.results[0].location.city + ", " + data.results[0].location.country,
             email: data.results[0].email,
@@ -27,14 +29,15 @@ class RandomUser extends Component {
       }
     }
   render() {
-      const {info, location, email, dob} = this.state
+      const {picture, info, location, email, dob} = this.state
     return (
-        <p>
+        <div>
+        <img src = {picture}></img><br/>
         {info}<br/>
         {location}<br/>
         {email}<br/>
         {dob}<br/>
-        </p> 
+        </div>
     );
   }
 }
